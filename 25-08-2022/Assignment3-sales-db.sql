@@ -46,147 +46,147 @@ SELECT cnum, cname, city, rating, snum FROM customers WHERE snum = 1001;
 SELECT rating, cname FROM customers WHERE city = 'San Jose';
 
 -- Write a query that will produce the snum values of all salespeople from the Orders table (with the duplicate values suppressed)
-SELECT snum, onum FROM orders ORDER BY onum;
+SELECT distinct(snum) FROM orders;
 
 -- Write a query that will give you all orders for more than Rs. 1,000
-SELECT COUNT(*) AS Orders FROM orders WHERE amt >= 1000;
+SELECT COUNT(amt) AS Orders FROM orders WHERE amt >= 1000;
 
 -- Write a query that will give you the names and cities of all salespeople in London with a commission above 0.10
 SELECT sname, city FROM salespeople WHERE city = 'london' AND comm > 0.10;
 
 -- Write a query on the Customers table whose output will exclude all customers with a rating <=100, unless they are located in Rome
-SELECT cnum, cname, city, rating, snum FROM customers WHERE rating <= 100 AND city = 'Rome';
-SELECT cnum, cname, city, rating, snum FROM customers WHERE NOT (rating <= 100 AND city = 'Rome');
+-- SELECT cnum, cname, city, rating, snum FROM customers WHERE NOT(rating <= 100 OR city = 'Rome');
+SELECT cnum, cname, city, rating, snum FROM customers WHERE rating > 100 AND city != 'Rome';
 
 -- What will be the output from the following query? 
-SELECT * FROM orders WHERE (odate = '1990-10-03' AND cnum > 2003);
-SELECT * FROM orders WHERE NOT (odate = '1990-10-03' AND cnum > 2003);
+-- SELECT * FROM orders WHERE (odate = '1990-10-03' AND cnum > 2003);
+-- SELECT * FROM orders WHERE NOT (odate = '1990-10-03' AND cnum > 2003);
 Select * from orders WHERE (amt < 1000 OR NOT (odate = '1990-10-03' AND cnum > 2003));
 -- it will display all orders except date is 1990-10-03 with cnum > 2003 or orders where amt is less than 1000
 -- output
-[
-  {
-    "onum": 3001,
-    "amt": 18.69,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2008,
-    "snum": 1007
-  },
-  {
-    "onum": 3003,
-    "amt": 767.19,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2001,
-    "snum": 1001
-  },
-  {
-    "onum": 3005,
-    "amt": 5160.45,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2003,
-    "snum": 1002
-  },
-  {
-    "onum": 3009,
-    "amt": 1713.23,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2002,
-    "snum": 1003
-  },
-  {
-    "onum": 3007,
-    "amt": 75.75,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2004,
-    "snum": 1002
-  },
-  {
-    "onum": 3008,
-    "amt": 4723.00,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2006,
-    "snum": 1001
-  },
-  {
-    "onum": 3010,
-    "amt": 309.95,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2004,
-    "snum": 1002
-  },
-  {
-    "onum": 3011,
-    "amt": 9891.88,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2006,
-    "snum": 1001
-  }
-]
+-- [
+--   {
+--     "onum": 3001,
+--     "amt": 18.69,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2008,
+--     "snum": 1007
+--   },
+--   {
+--     "onum": 3003,
+--     "amt": 767.19,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2001,
+--     "snum": 1001
+--   },
+--   {
+--     "onum": 3005,
+--     "amt": 5160.45,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2003,
+--     "snum": 1002
+--   },
+--   {
+--     "onum": 3009,
+--     "amt": 1713.23,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2002,
+--     "snum": 1003
+--   },
+--   {
+--     "onum": 3007,
+--     "amt": 75.75,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2004,
+--     "snum": 1002
+--   },
+--   {
+--     "onum": 3008,
+--     "amt": 4723.00,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2006,
+--     "snum": 1001
+--   },
+--   {
+--     "onum": 3010,
+--     "amt": 309.95,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2004,
+--     "snum": 1002
+--   },
+--   {
+--     "onum": 3011,
+--     "amt": 9891.88,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2006,
+--     "snum": 1001
+--   }
+-- ]
 
 -- What will be the output of the following query?
-SELECT * FROM orders WHERE (odate = '1990-10-03' OR snum > 1006);
-Select * from orders WHERE (odate = '1990-10-03' OR snum > 1006) AND amt >= 1500;
-Select * from orders WHERE NOT ((odate = '1990-10-03' OR snum > 1006) AND amt >= 1500)
+-- SELECT * FROM orders WHERE (odate = '1990-10-03' OR snum > 1006);
+-- Select * from orders WHERE (odate = '1990-10-03' OR snum > 1006) AND amt >= 1500;
+SELECT * FROM orders WHERE NOT ((odate = '1990-10-03' OR snum > 1006) AND amt >= 1500);
 -- it will display all orders except date is 1990-10-03 with 
 -- output
-[
-  {
-    "onum": 3001,
-    "amt": 18.69,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2008,
-    "snum": 1007
-  },
-  {
-    "onum": 3003,
-    "amt": 767.19,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2001,
-    "snum": 1001
-  },
-  {
-    "onum": 3006,
-    "amt": 1098.16,
-    "odate": "1990-10-03T00:00:00",
-    "cnum": 2008,
-    "snum": 1007
-  },
-  {
-    "onum": 3009,
-    "amt": 1713.23,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2002,
-    "snum": 1003
-  },
-  {
-    "onum": 3007,
-    "amt": 75.75,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2004,
-    "snum": 1002
-  },
-  {
-    "onum": 3008,
-    "amt": 4723.00,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2006,
-    "snum": 1001
-  },
-  {
-    "onum": 3010,
-    "amt": 309.95,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2004,
-    "snum": 1002
-  },
-  {
-    "onum": 3011,
-    "amt": 9891.88,
-    "odate": "1990-10-04T00:00:00",
-    "cnum": 2006,
-    "snum": 1001
-  }
-]
+-- [
+--   {
+--     "onum": 3001,
+--     "amt": 18.69,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2008,
+--     "snum": 1007
+--   },
+--   {
+--     "onum": 3003,
+--     "amt": 767.19,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2001,
+--     "snum": 1001
+--   },
+--   {
+--     "onum": 3006,
+--     "amt": 1098.16,
+--     "odate": "1990-10-03T00:00:00",
+--     "cnum": 2008,
+--     "snum": 1007
+--   },
+--   {
+--     "onum": 3009,
+--     "amt": 1713.23,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2002,
+--     "snum": 1003
+--   },
+--   {
+--     "onum": 3007,
+--     "amt": 75.75,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2004,
+--     "snum": 1002
+--   },
+--   {
+--     "onum": 3008,
+--     "amt": 4723.00,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2006,
+--     "snum": 1001
+--   },
+--   {
+--     "onum": 3010,
+--     "amt": 309.95,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2004,
+--     "snum": 1002
+--   },
+--   {
+--     "onum": 3011,
+--     "amt": 9891.88,
+--     "odate": "1990-10-04T00:00:00",
+--     "cnum": 2006,
+--     "snum": 1001
+--   }
+-- ]
 
 -- Write a query that selects all orders except those with zeroes or NULLs in the amt field
-SELECT onum, amt, odate,cnum,snum FROM orders WHERE amt IS NOT NULL;
+SELECT onum, amt, odate,cnum,snum FROM orders WHERE amt!=0 AND amt!=NULL;
