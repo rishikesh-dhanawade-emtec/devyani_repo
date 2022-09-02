@@ -56,7 +56,7 @@ SELECT sname, city FROM salespeople WHERE city = 'london' AND comm > 0.10;
 
 -- Write a query on the Customers table whose output will exclude all customers with a rating <=100, unless they are located in Rome
 -- SELECT cnum, cname, city, rating, snum FROM customers WHERE NOT(rating <= 100 OR city = 'Rome');
-SELECT cnum, cname, city, rating, snum FROM customers WHERE rating > 100 AND city != 'Rome';
+SELECT cnum, cname, city, rating, snum FROM customers WHERE rating > 100 OR city = 'Rome';
 
 -- What will be the output from the following query? 
 -- SELECT * FROM orders WHERE (odate = '1990-10-03' AND cnum > 2003);
@@ -189,4 +189,4 @@ SELECT * FROM orders WHERE NOT ((odate = '1990-10-03' OR snum > 1006) AND amt >=
 -- ]
 
 -- Write a query that selects all orders except those with zeroes or NULLs in the amt field
-SELECT onum, amt, odate,cnum,snum FROM orders WHERE amt!=0 AND amt!=NULL;
+SELECT onum, amt, odate,cnum,snum FROM orders WHERE amt!=0 AND amt IS NULL;
