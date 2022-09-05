@@ -315,32 +315,26 @@ function showPrimeNumbers(range) {
 }
 showPrimeNumbers(20) 
 
+
 //With map
 
-
-/*function showPrimeNumbers (num) {
+function showPrimeNumbers1(num) {
     let primeArray = []
-    for (let index = 2; index < num; index++){
-        primeArray.push(index)
-    }
-
-    primeArray.map((value) => {
-        for(let index = 2; index <= value/2; index++) {
-            isPrime=true
-            for (let j = 2; j < index; j++) {
-                if(index % j == 0 && index!=j) {
-                    isPrime=false
-                    let index = primeArray.indexOf(value)
-                    return primeArray.splice(index, 1)
-                }
+    for(let i = 2; i <= num; i++) {
+        let isPrime = true
+        for (let j = 2; j < i; j++) {
+            if(i % j == 0 && i != j) {
+                isPrime = false
             }
-            // if(isPrime){
-            //     //return primeArray.splice(index, 1)
-            //     return true
-            // }
         }
-    });
-    console.log(primeArray)
+        if(isPrime)
+            primeArray.push(i)
+    } 
+
+    const prime = primeArray.map((value) => {
+        console.log(`Prime Number : ${value}`)
+    })
 }
 
-showPrimeNumbers(20)*/
+showPrimeNumbers1(20)
+
