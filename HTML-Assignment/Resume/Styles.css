@@ -81,6 +81,7 @@ hr {
     letter-spacing: 1px;
     margin-bottom: 20px;
     margin-top: 10px;
+    font-size: 18px;
     text-align: center;
 }
 .contact-info ul {
@@ -100,6 +101,7 @@ hr {
 .contact-info ul li span {
     color: #fff;
     font-weight: 300;
+    font-size: 15px;
 }
 .skills-info {
     padding-top: 20px;
@@ -117,20 +119,22 @@ hr {
 }
 .skills-info .text {
     display: inline-block;
-    
     color: #fff;
     font-weight: 300;
+    font-size: 15px;
 }
 .skills-info .percent {
     display: inline-block;
     color: #fff;
     font-weight: 300;
+    font-size: 15px;
 }
 .language {
     margin-left: 0px;
     padding-top: 20px;
 }
 .language ul li {   
+    float: left;
     list-style: none;
     cursor: pointer;
     padding: 5px;
@@ -139,6 +143,7 @@ hr {
     padding: 5px;
     color: #fff;
     font-weight: 300;
+    font-size: 15px;
 }
 .interest {
     padding-top: 20px;
@@ -185,10 +190,11 @@ hr {
 }
 .right-title {
     color: #000;
+    font-size: 18px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
 }
 .right-side .education-table {
@@ -213,7 +219,7 @@ hr {
     padding: 10px;
 }
 .experience-title {
-    font-size: 18px;
+    font-size: 15px;
     padding: 10px;
     font-weight: bold;
     text-transform: uppercase;
@@ -225,25 +231,23 @@ hr {
 }
 .experience span {
     padding: 10px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 .experience .name {
     padding-bottom: 10px;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 14px;
 }
 .experience-desc {
-    padding: 10px;
-    font-size: 18px;    
+    font-size: 14px;    
     font-family: 'Poppins', sans-serif;
-    
 }
 .project {
     padding: 10px;
 }
 .project-title {
-    font-size: 18px;
+    font-size: 15px;
     padding: 10px;
     font-weight: bold;
     text-transform: uppercase;
@@ -254,7 +258,7 @@ hr {
     cursor: pointer;
 }
 .project-desc {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     padding: 10px;
 }
