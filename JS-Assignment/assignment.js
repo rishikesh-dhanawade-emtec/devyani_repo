@@ -70,8 +70,15 @@ triArea(10, 10)
 //  calcAge(0) ➞ 0
 //  calcAge(20) ➞ 7300
 
+/* function calcAge(years) {
+    const leapDays = parseInt(years / 4);
+    console.log(leapDays)
+    const days = (years * 365)+leapDays;
+    console.log(`Age in days : ${days}`)
+}*/
+
 function calcAge(years) {
-    const days = years * 365
+    const days = (years * 365);
     console.log(`Age in days : ${days}`)
 }
 
