@@ -82,6 +82,28 @@ function calcAge(years) {
     console.log(`Age in days : ${days}`)
 }
 
+function calculateAge(years) {
+    let currentDate = new Date();
+    const currentYear = currentDate.getFullYear()
+    console.log(`Current Year: ${currentYear}`)
+    const birthYear = (currentYear - years)
+    console.log(`Birth Year : ${birthYear}`);
+
+    
+    let leapDays = 0;
+    for(let index = birthYear; index < currentYear; index++) {
+        if (index % 4 == 0 || index % 400 == 0) {
+            leapDays+= 1
+            // console.log(leapDays)
+        }
+    }
+
+    const days = (years * 365)+leapDays;
+    console.log(days);
+}
+
+calculateAge(20)
+
 calcAge(65)
 calcAge(0)
 calcAge(20)
