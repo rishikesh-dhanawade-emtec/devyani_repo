@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.register-row {
+    background-color: white;
+    border-radius: 30px;
+}
+.RegisterImage {
+    padding: 10px;
+    width: auto;
+    height: 100%;
+}

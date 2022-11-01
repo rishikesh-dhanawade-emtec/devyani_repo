@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.login-row {
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+}
+.loginImage {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.btn1 {
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+}
