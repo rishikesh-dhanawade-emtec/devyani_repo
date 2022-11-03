@@ -16,7 +16,7 @@ export const HotelList = () => {
 
   const onDeleteCliked = (id) => {
     console.log(`hotel deleted`);
-    toast.success('Hotel Deleted Successfully!!')
+    toast.error(`${hotelData.name} Deleted Successfully!!`);
     dispatch(hotelDeleted({ id }));
   }
 

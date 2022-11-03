@@ -11,16 +11,15 @@ const UserList = () => {
         return (
             <>
                 <h3 className='text-center m-3' style={{ fontFamily: 'Poppins', fontWeight: 'bold' }}>Users List</h3>
-                <div className="col-2"></div>
-                <div className="col-8">
+                <div className="col">
                     <table className="table">
                         <thead style={{ background: 'black', color: 'white' }}>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">User Name</th>
                                 <th scope="col">Email</th>
+                                <th scope='col'>Contact</th>
                                 <th scope="col">City</th>
-                                <th scope='col'>Password</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,8 +30,8 @@ const UserList = () => {
                                             <td>{user.id}</td>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.address}</td>
-                                            <td>{user.password}</td>
+                                            <td>{user.contact}</td>
+                                            <td>{user.city}</td>
                                         </tr>
                                     )
                                 })

@@ -27,10 +27,10 @@ const EditHotel = ({ match }) => {
     const onEmailChanged = e => setEmail(e.target.value);
     const onDescChanged = e => setDesc(e.target.value);
 
-    const onSaveHotelClicked = () => {
+    function onSaveHotelClicked() {
         if (name && address && email && contact) {
             dispatch(hotelUpdated({ id: hotelId, name, address, contact, email, desc }))
-            toast.success('Updated Successfully!!');
+            toast.success('Hotel Data Updated Successfully!!');
             navigate(`/hotelList`);
         }
     }

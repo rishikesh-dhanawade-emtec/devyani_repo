@@ -8,8 +8,9 @@ import './register.css';
 const Register = () => {
 
     const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
     const [email, setEmail] = useState('');
+    const [contact, setContact] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -20,28 +21,57 @@ const Register = () => {
     const navigate = useNavigate();
 
     const onNameChanged = e => setName(e.target.value);
-    const onAddressChanged = e => setAddress(e.target.value);
+    const onCityChanged = e => setCity(e.target.value);
     const onEmailChanged = e => setEmail(e.target.value);
+    const onContactChanged = e => setContact(e.target.value);
     const onPasswordChanged = e => setPassword(e.target.value);
     const onConfirmPasswordChanged = e => setConfirmPassword(e.target.value);
 
-    const onRegisterClicked = () => {
-        if (name && address && email && password && confirmPassword) {
-            if (password === confirmPassword) {
-                dispatch(userAdded(name, address, email, password, confirmPassword))
+    // const onRegisterClicked = () => {
+    //     if (name && city && email && contact && password && confirmPassword) {
+    //         if (password === confirmPassword) {
+    //             dispatch(userAdded(name, city, email, contact, password, confirmPassword))
+    //             setName('');
+    //             setCity('');
+    //             setEmail('');
+    //             setContact('');
+    //             setPassword('');
+    //             setConfirmPassword('');
+    //             toast.success('Registered Successfully !!');
+    //             navigate('/login');
+    //         }
+    //         else {
+    //             toast.warning('Enter Correct Password');
+    //             setName('');
+    //             setCity('');
+    //             setEmail('');
+    //             setContact('');
+    //             setPassword('');
+    //             setConfirmPassword('');
+    //             navigate('/register');
+    //         }
+    //     }
+    // }
+
+    function onRegisterClicked() {
+        if(name && city && email && contact && password && confirmPassword) {
+            if(password === confirmPassword) {
+                dispatch(userAdded(name, city, email, contact, password, confirmPassword))
                 setName('');
-                setAddress('');
+                setCity('');
                 setEmail('');
+                setContact('');
                 setPassword('');
                 setConfirmPassword('');
-                toast.success('Registered Successfully !!');
+                toast.success('Registered Successfully!!!');
                 navigate('/login');
             }
             else {
-                toast.warning('Enter Correct Password');
+                toast.warning('Password Mismatched!! Enter Correct Password');
                 setName('');
-                setAddress('');
+                setCity('');
                 setEmail('');
+                setContact('');
                 setPassword('');
                 setConfirmPassword('');
                 navigate('/register');
@@ -65,10 +95,13 @@ const Register = () => {
                                         <input type="text" className='form-control' placeholder='Name' name='name' id='name' value={name} onChange={onNameChanged} />
                                     </div>
                                     <div className="form-group mb-3">
-                                        <input type='text' placeholder='City' className='form-control' style={{ resize: 'none' }} value={address} name='address' id='address' onChange={onAddressChanged} />
+                                        <input type='text' placeholder='City' className='form-control' style={{ resize: 'none' }} value={city} name='city' id='city' onChange={onCityChanged} />
                                     </div>
                                     <div className="form-group mb-3">
                                         <input type="email" className='form-control' placeholder='Email Address' value={email} name='email' id='email' onChange={onEmailChanged} />
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <input type='number' placeholder='Contact Number' className='form-control' style={{ resize: 'none' }} value={contact} name='contact' id='contact' onChange={onContactChanged} />
                                     </div>
                                     <div className="form-group mb-3">
                                         <input type="password" className='form-control' placeholder='Password' value={password} name='password' id='password' onChange={onPasswordChanged} />

@@ -22,7 +22,7 @@ const Login = () => {
   const onEmailChanged = e => setEmail(e.target.value);
   const onPasswordChanged = e => setPassword(e.target.value);
 
-  const onLoginClicked = () => {
+  function onLoginClicked() {
     if (!email || !password) {
       return toast.warning("Please fill in all fields!!");
     }

@@ -20,7 +20,7 @@ export const AddHotel = () => {
     const onEmailChanged = e => setEmail(e.target.value);
     const onDescChanged = e => setDesc(e.target.value);
 
-    const onSaveHotelClicked = () => {
+    function onSaveHotelClicked() {
         if (name && address && contact && email && desc) {
             dispatch(hotelAdded(name, address, contact, email, desc))
             setName('');

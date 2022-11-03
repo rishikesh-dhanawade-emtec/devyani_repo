@@ -19,6 +19,7 @@ import ShowProfile from './components/User/ShowProfile';
 import ShowBookingHistory from './components/User/ShowBookingHistory';
 import ShowCompleteBooking from './components/Admin/ShowCompleteBooking';
 import AdminNavbar from './components/Admin/AdminNavbar';
+import EditProfile from './components/User/EditProfile';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path='/showBookingHistory/:userId' element={<ShowBookingHistory />}></Route>
         <Route path='/showCompleteBooking' element={<ShowCompleteBooking />}></Route>
         <Route path='/adminNavbar' element={<AdminNavbar />}></Route>
+        <Route path='/editProfile/:userId' element={<EditProfile />}></Route>
       </Routes>
     </div>
   );
