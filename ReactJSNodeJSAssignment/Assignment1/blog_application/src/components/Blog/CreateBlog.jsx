@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
-import Navbar from './Navbar';
-import { React, useEffect, useState } from 'react';
+import Footer from '../Home/Footer';
+import Header from '../Home/Header';
+import Navbar from '../Home/Navbar';
+import { React, useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ const CreateBlog = () => {
         toast.success(`Blog Created Successfully!!`);
         navigate(`/${userId}`);
       }).catch(function(error){
-        toast.error('Something went wrong...Please try again!!');
+        toast.error('Something went wrong!!');
       })
     }
   }
@@ -45,7 +45,7 @@ const CreateBlog = () => {
       <Header />
 
       {/* Blog Form */}
-      <div className="container pt-3">
+      <div className="container pt-3 pb-5">
         <form style={{ margin: '5px 20px 5px 20px' }}>
           <div className="form-group mb-3">
             <label htmlFor="Title" className="form-label" style={{ fontWeight: 'bold' }}>Title</label>

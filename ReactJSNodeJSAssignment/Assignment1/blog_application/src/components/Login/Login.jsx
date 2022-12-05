@@ -34,7 +34,7 @@ const Login = () => {
 
     return (
         <>
-            <section className='form' style={{ marginTop: '10%', fontFamily: 'Poppins' }}>
+            <section className='form' style={{ marginTop: '7%', fontFamily: 'Poppins' }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-3"></div>

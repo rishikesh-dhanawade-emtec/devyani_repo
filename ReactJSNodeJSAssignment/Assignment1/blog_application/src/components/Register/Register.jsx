@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import PasswordChecklist from "react-password-checklist";
 
 const Register = () => {
 
@@ -15,13 +16,37 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const signup = () => {
-
-        if (user.firstName === '' || user.lastName === '' || user.email === '' || user.password === '' || user.confirmPassword === '') {
+    const existingUser = () => {
+        if (user.firstName === '' || user.lastName === '' || user.password === '' || user.confirmPassword === '') {
             toast.warn('Please fill the details!!')
         } else {
-            if (user.password === user.confirmPassword) {
+            if (user.email !== '') {
+                axios.post("http://localhost:3000/user/userEmail", {
+                    email: user.email
+                }).then((response) => {
+                    const data = response.data
+                    if (data) {
+                        toast.warn('User already exists');
+                    } else { }
+                }).catch((error) => {
+                    const err = error.response.data.message;
+                    if (err === 'User Not Found!') {
+                        signup();
+                    } else {
+                        toast.error(`Email must be an email!`);
+                    }
+                });
+            } else {
+                toast.error(`Email should not be empty`);
+            }
+        }
+    }
 
+    const signup = () => {
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+        const pass = strongRegex.test(user.password);
+        if (pass) {
+            if (user.password === user.confirmPassword) {
                 axios.post("http://localhost:3000/user/signup", {
                     firstName: user.firstName,
                     lastName: user.lastName,
@@ -33,11 +58,14 @@ const Register = () => {
                     toast.success('User Registered Successfully!!')
                     navigate('/login');
                 }).catch(function (error) {
-                    toast.error('Something went wrong!! Please try again!!');
+                    console.log(error)
+                    toast.error('Something went wrong!!');
                 })
             } else {
                 toast.warn('Password and Confirm Password does not matched!!')
             }
+        } else {
+            toast.error(`Enter valid Password`);
         }
     }
 
@@ -66,6 +94,20 @@ const Register = () => {
                                     <label className="form-label">Password</label>
                                     <input type="password" name="password" value={user.password} placeholder='Password' className='form-control' onChange={(e) => setUser({ ...user, password: e.target.value })} />
                                 </div>
+                                {
+                                    user.password ?
+                                        <PasswordChecklist style={{ fontSize: 15 }} iconSize={13}
+                                            rules={["minLength", "specialChar", "number", "capital", "match", "lowercase"]} minLength={5} value={user.password} valueAgain={user.confirmPassword}
+                                            messages={{
+                                                minLength: "Password has more than 5 characters.",
+                                                specialChar: "Password has special characters.",
+                                                number: "Password has a number.",
+                                                capital: "Password has a capital letter.",
+                                                match: "Passwords match.",
+                                            }}
+                                        />
+                                        : <p></p>
+                                }
                                 <div className="form-group mb-3">
                                     <label className="form-label">Confirm Password</label>
                                     <input type="password" name="confirmPassword" value={user.confirmPassword} placeholder='Confirm Password' className='form-control' onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })} />
@@ -73,7 +115,7 @@ const Register = () => {
                                 <div>
                                     <span>Already have account ? </span><Link to='/login' style={{ textDecoration: 'none', fontSize: '16px' }}> Signin Here </Link>
                                 </div>
-                                <button type='button' className='btn btn-primary mt-3' onClick={signup}>Signup</button>
+                                <button type='button' className='btn btn-primary mt-3' onClick={existingUser}>Signup</button>
                             </form>
                         </div>
                     </div>

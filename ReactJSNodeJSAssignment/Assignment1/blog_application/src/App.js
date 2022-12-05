@@ -1,18 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
-import BlogDetails from './components/BlogDetails';
-import CreateBlog from './components/CreateBlog';
-import EditBlog from './components/EditBlog';
-import Home from './components/Home';
-import Login from './components/Login';
-import Profile from './components/Profile';
-import Register from './components/Register';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Profile from './components/UserProfile/Profile';
+import Register from './components/Register/Register';
+import CreateBlog from './components/Blog/CreateBlog';
+import EditBlog from './components/Blog/EditBlog';
+import BlogDetails from './components/Blog/BlogDetails';
 
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer autoClose={3000} pauseOnFocusLoss />
       <Routes>
         <Route path='/:userId' element={<Home />} ></Route>
         <Route path='/login' element={<Login />}></Route>

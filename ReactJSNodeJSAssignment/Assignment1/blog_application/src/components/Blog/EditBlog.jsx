@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
-import Navbar from './Navbar';
+import { useNavigate, useParams } from 'react-router-dom';
+import Footer from '../Home/Footer';
+import Header from '../Home/Header';
+import Navbar from '../Home/Navbar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 

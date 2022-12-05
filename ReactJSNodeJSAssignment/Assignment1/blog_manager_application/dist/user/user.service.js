@@ -68,10 +68,23 @@ let UserService = class UserService {
             postalCode: updateProfileDto.postalCode,
             birthDate: updateProfileDto.birthDate,
         }).where("id = :id", { id }).execute();
-        return updateUser;
+        return this.findUser(id);
     }
     async findUsers() {
         return await this.blogRepository.find({ relations: ['blogs'] });
+    }
+    async findUserByEmail(findUserEmail) {
+        const condition = {
+            email: findUserEmail.email,
+        };
+        const user = await this.userRepository
+            .createQueryBuilder()
+            .where("email = :email", condition)
+            .getOne();
+        if (!user) {
+            throw new common_1.NotFoundException('User Not Found!');
+        }
+        return user;
     }
 };
 UserService = __decorate([

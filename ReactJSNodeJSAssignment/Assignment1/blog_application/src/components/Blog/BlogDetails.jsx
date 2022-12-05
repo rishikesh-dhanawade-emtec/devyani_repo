@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
-import Navbar from './Navbar';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Footer from '../Home/Footer';
+import Header from '../Home/Header';
+import Navbar from '../Home/Navbar';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { format, parseISO } from 'date-fns';
@@ -20,6 +20,8 @@ const BlogDetails = () => {
         getBlogDetails();
         getAllComments();
     }, []);
+
+    const navigate = useNavigate();
 
     async function getBlogDetails() {
         await axios.get(`http://localhost:3000/blog/${blogId}`).then((response) => {
@@ -51,7 +53,7 @@ const BlogDetails = () => {
             setComment(response.data);
             toast.success(`Commented Successfully!!`);
         }).catch(function (error) {
-            toast.error('Something went wrong...Please try again!!');
+            toast.error('Something went wrong!!');
         })
     }
 
@@ -63,7 +65,11 @@ const BlogDetails = () => {
 
     const ratings = blogs.likes - blogs.dislikes > 0 ? blogs.likes - blogs.dislikes : 0;
 
-    const stars = Math.round((blogs.likes/(blogs.likes + blogs.dislikes))*5)
+    const stars = Math.round((blogs.likes / (blogs.likes + blogs.dislikes)) * 5);
+
+    const back = () => {
+        navigate(`/${userId}`);
+    }
 
     return (
         <>
@@ -75,11 +81,14 @@ const BlogDetails = () => {
 
             {/* Blog */}
 
-            <div className="container" style={{ padding: '0 50px 10px 50px' }} key={blogId}>
+            <div className="container" style={{ padding: '0 50px 30px 50px' }} key={blogId}>
+                <button className='btn btn-secondary' onClick={back}>
+                    <span><i className="bi bi-arrow-left"></i></span>
+                </button>
                 <div className="row">
                     <div className="col">
                         {/* Blog Card */}
-                        <div className="card mt-4" style={{ border: 'none' }}>
+                        <div className="card" style={{ border: 'none' }}>
                             <div className="card-body" style={{ padding: '30px 40px 10px 40px' }}>
                                 <div className="row">
                                     <div className="col-lg-6">
@@ -97,7 +106,7 @@ const BlogDetails = () => {
                                                         [...Array(stars)].map((index) => {
                                                             index += 1;
                                                             return (
-                                                                <Link style={{ color: '#FFD700', fontSize: '20px' }}><i className="bi bi-star-fill"></i></Link>
+                                                                <Link key={index} style={{ color: '#FFD700', fontSize: '20px' }}><i className="bi bi-star-fill"></i></Link>
                                                             )
                                                         })
                                                         : <p></p>
@@ -152,10 +161,10 @@ const BlogDetails = () => {
                 </div>
 
 
-                <div style={{ padding: '10px' }}>
+                {/* <div style={{ padding: '10px' }}>
                     <Link style={{ color: 'blue', fontSize: '35px' }}><i className="bi bi-arrow-left-square-fill"></i></Link>
                     <Link style={{ color: 'blue', fontSize: '35px', paddingLeft: '10px' }}><i className="bi bi-arrow-right-square-fill"></i></Link>
-                </div>
+                </div> */}
             </div>
 
             {/* Footer */}

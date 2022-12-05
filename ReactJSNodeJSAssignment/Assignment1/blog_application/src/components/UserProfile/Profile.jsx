@@ -1,11 +1,10 @@
 import { React, useState, useEffect } from 'react'
-import Footer from './Footer';
-import Header from './Header';
-import Navbar from './Navbar';
+import Footer from '../Home/Footer';
+import Header from '../Home/Header';
+import Navbar from '../Home/Navbar';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { format, parseISO, toDate } from 'date-fns';
 
 const Profile = () => {
 
@@ -15,7 +14,7 @@ const Profile = () => {
 
     useEffect(() => {
         getUser();
-    }, [])
+    },[]);
 
     const [user, setUser] = useState([]);
 
@@ -46,12 +45,10 @@ const Profile = () => {
             toast.success('Profile Updated Successfully!!');
             navigate(`/${userId}`);
         }).catch(function (error) {
+            console.log(error)
             toast.error('Something went wrong!!');
         });
     }
-
-    const date = new Date(user.birthDate).toDateString().split(3);
-    console.log(date);
 
     return (
         <>
@@ -73,7 +70,7 @@ const Profile = () => {
                         </div>
                         <div className="form-group mb-3">
                             <label className="form-label">Email</label>
-                            <input type="email" name="email" placeholder='Email' className='form-control' value={user.email} disabled />
+                            <input title="Field can't change" type="email" name="email" placeholder='Email' className='form-control' value={user.email} disabled />
                         </div>
                         <div className="form-group mb-3">
                             <label className="form-label">City</label>
@@ -102,7 +99,7 @@ const Profile = () => {
                         </div>
                         <div className="form-group mb-3">
                             <label className="form-label">Password</label>
-                            <input type="password" name="password" placeholder='Password' className='form-control' value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                            <input title="Field can't change" type="password" name="password" placeholder='Password' className='form-control' value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} disabled />
                         </div>
                         <div className="form-group mb-3">
                             <label className="form-label">State</label>

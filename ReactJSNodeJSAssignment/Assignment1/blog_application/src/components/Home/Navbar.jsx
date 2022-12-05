@@ -45,9 +45,10 @@ const Navbar = () => {
                                     Welcome {user.firstName}
                                 </Link>
                                 <ul className="dropdown-menu p-0" style={{textAlign:'center'}}>
-                                    <li><Link to={`/createBlog/${user.id}`} className="dropdown-item" href="#">Create</Link></li>
-                                    <li><Link to={`/profile/${user.id}`} className="dropdown-item" href="#">Profile</Link></li>
-                                    <li><Link to={`/login`} className="dropdown-item" href="#">Logout</Link></li>
+                                    <li><Link to={`/createBlog/${user.id}`} className="dropdown-item">Create</Link></li>
+                                    <li><Link to={`/profile/${user.id}`} className="dropdown-item">Profile</Link></li>
+                                    <div className='dropdown-divider'></div>
+                                    <li><Link to={`/login`} className="dropdown-item">Logout</Link></li>
                                 </ul>
                             </li>
                         </ul>

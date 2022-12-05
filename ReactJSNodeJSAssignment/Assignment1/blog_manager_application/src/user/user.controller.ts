@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { FindUserEmail } from './dto/finduser.email.dto';
 import { SigninDto } from './dto/signin.dto';
 import { SignupDto } from './dto/signup.dto';
 import { UpdateProfileDto } from './dto/update.profile.dto';
@@ -19,11 +20,6 @@ export class UserController {
     return this.userService.signin(signinDto);
   }
 
-  // @Post(':id')
-  // updateCity(@Param('id') id:number) {
-  //   return this.userService.updateCity(id);
-  // }
-
   @Put('/:id')
   updateProfile(@Param('id') id: number, @Body() updateProfileDto: UpdateProfileDto) {
     return this.userService.updateProfile(id, updateProfileDto);
@@ -35,12 +31,17 @@ export class UserController {
   }
 
   @Get('/:id')
-  findUser(@Param('id') id:number) {
+  findUser(@Param('id') id: number) {
     return this.userService.findUser(id);
   }
 
   @Get()
   findUsers() {
     return this.userService.findUsers();
+  }
+
+  @Post('userEmail')
+  findUserByEmail(@Body() findUserEmail: FindUserEmail) {
+    return this.userService.findUserByEmail(findUserEmail);
   }
 }

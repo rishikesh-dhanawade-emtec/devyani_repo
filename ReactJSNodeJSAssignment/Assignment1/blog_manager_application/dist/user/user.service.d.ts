@@ -4,6 +4,7 @@ import { SignupDto } from './dto/signup.dto';
 import { UserEntity } from './user.entity';
 import { BlogEntity } from 'src/blog/blog.entity';
 import { UpdateProfileDto } from './dto/update.profile.dto';
+import { FindUserEmail } from './dto/finduser.email.dto';
 export declare class UserService {
     private userRepository;
     private blogRepository;
@@ -12,6 +13,7 @@ export declare class UserService {
     signin(signinDto: SigninDto): Promise<UserEntity>;
     getAllUsers(): Promise<UserEntity[]>;
     findUser(id: number): Promise<UserEntity>;
-    updateProfile(id: number, updateProfileDto: UpdateProfileDto): Promise<import("typeorm").UpdateResult>;
+    updateProfile(id: number, updateProfileDto: UpdateProfileDto): Promise<UserEntity>;
     findUsers(): Promise<BlogEntity[]>;
+    findUserByEmail(findUserEmail: FindUserEmail): Promise<UserEntity>;
 }

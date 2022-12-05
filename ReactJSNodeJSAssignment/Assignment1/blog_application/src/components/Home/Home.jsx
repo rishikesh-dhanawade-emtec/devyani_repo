@@ -144,7 +144,7 @@ const Home = () => {
                                                                 {/* Like */}
                                                                 <div className="col-lg-6">
                                                                     <div className="row" style={{ justifyContent: 'end' }}>
-                                                                        <div className="col-lg-3">
+                                                                        <div className="col-lg-4">
                                                                             <button className='btn btn-outline' onClick={() => likes(id)} style={{ color: 'black', fontSize: '25px' }}><i className="bi bi-hand-thumbs-up"></i></button>
                                                                             <button className='btn btn-outline' onClick={() => dislikes(id)} style={{ paddingLeft: '10px', color: 'black', fontSize: '25px' }}><i className="bi bi-hand-thumbs-down"></i></button>
                                                                         </div>

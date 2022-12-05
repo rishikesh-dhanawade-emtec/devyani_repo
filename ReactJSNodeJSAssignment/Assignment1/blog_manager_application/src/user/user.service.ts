@@ -7,6 +7,7 @@ import { UserEntity } from './user.entity';
 import * as Crypto from 'crypto-js';
 import { BlogEntity } from 'src/blog/blog.entity';
 import { UpdateProfileDto } from './dto/update.profile.dto';
+import { FindUserEmail } from './dto/finduser.email.dto';
 
 @Injectable()
 export class UserService {
@@ -81,11 +82,28 @@ export class UserService {
       birthDate: updateProfileDto.birthDate,
     }).where("id = :id", { id }).execute();
 
-    return updateUser;
+    return this.findUser(id);
   }
 
   async findUsers() {
     return await this.blogRepository.find({ relations: ['blogs'] })
+  }
+
+  async findUserByEmail(findUserEmail: FindUserEmail) {
+    const condition = {
+      email: findUserEmail.email,
+    };
+
+    const user = await this.userRepository
+      .createQueryBuilder()
+      .where("email = :email", condition)
+      .getOne();
+
+    if (!user) {
+      throw new NotFoundException('User Not Found!');
+    }
+
+    return user;
   }
 
 }

@@ -1,8 +1,7 @@
 import { Gender } from "../user.entity";
-export interface UpdateProfileDto {
+export declare class UpdateProfileDto {
     firstName: string;
     lastName: string;
-    password: string;
     city: string;
     state: string;
     country: string;
